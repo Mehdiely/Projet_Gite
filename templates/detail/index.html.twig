@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Liste des Gîtes</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container mt-4">
+			<h1 class="mb-4">Detail du Gîte</h1>
+
+			{% for gite in gites %}
+				<div class="card mb-4">
+					<div class="card-body">
+						<h4 class="card-title">{{ gite.Nomgite }}</h4>
+
+						<h5 class="card-subtitle mb-3">Description du gite</h5>
+						<p class="card-text">
+							<strong>Ville:</strong>
+							{{ gite.ville }}</p>
+						<p class="card-text">
+							<strong>Surface:</strong>
+							{{ gite.surface }}
+							m²</p>
+						<p class="card-text">
+							<strong>Couchage:</strong>
+							{{ gite.couchage }}</p>
+						<p class="card-text">
+							<strong>Région:</strong>
+							{{ gite.region }}</p>
+						<p class="card-text">
+							
+							<strong>Département:</strong>
+							{{ gite.departement }}</p>
+						<p class="card-text">
+							<strong>Nombre de chambres:</strong>
+							{{ gite.nombrechambre }}</p>
+
+						<!-- Informations sur le propriétaire -->
+						<h5 class="card-subtitle mb-3">Info Proprietaire</h5>
+						<p class="card-text">
+							<strong>Proprietaire:</strong>
+							{{ gite.idproprio.nom }}</p>
+						<p class="card-text">
+							<strong>Téléphone:</strong>
+							0{{ gite.idproprio.numero }}</p>
+						<p class="card-text">
+							<strong>Email:</strong>
+							{{ gite.idproprio.email }}</p>
+						<p class="card-text">
+							<strong>Horaire disponibilité:</strong>
+							0{{ gite.idproprio.horaire }}</p>
+					</div>
+				</div>
+			{% endfor %}
+
+			{% for ext in equipementExt %}
+				<div class="card mb-4">
+					<div class="card-body">
+						<h5 class="card-subtitle mb-3">Equipement Exterieur</h5>
+
+						<p class="card-text">
+							<strong>Terrasse:</strong>
+							{% if ext.terasse %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if ext.terasse %}
+							<p class="card-text">
+								<strong>Terrasse Prix:</strong>
+								{% if ext.terasseprix %}
+									{{ ext.terasseprix }}€{% else %}gratuit
+								{% endif %}
+							</p>
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Barbecue:</strong>
+							{% if ext.bbq %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if ext.bbq %}
+							<p class="card-text">
+								<strong>Barbecue Prix:</strong>
+								{% if ext.bbqprix %}
+									{{ ext.bbqprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Piscine Partagée:</strong>
+							{% if ext.piscinepart %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if ext.piscinepart %}
+							<p class="card-text">
+								<strong>Piscine Partagée: Prix:</strong>
+								{% if ext.piscinepartprix %}
+									{{ ext.piscinepartprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+
+						<p class="card-text">
+							<strong>Piscine Privée :</strong>
+							{% if ext.piscineprivprix %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if ext.piscinepriv %}
+							<p class="card-text">
+								<strong>Piscine Privée  Prix:</strong>
+								{% if ext.piscinepriv %}
+									{{ ext.piscineprivprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Terrain de Tennis:</strong>
+							{% if ext.tennis %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if ext.tennis %}
+							<p class="card-text">
+								<strong>Terrain de Tennis Prix:</strong>
+								{% if ext.tennisprix %}
+									{{ ext.tennisprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+						<p class="card-text">
+							<strong>Table de PingPong :</strong>
+							{% if ext.pingpong %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if ext.pingpong %}
+							<p class="card-text">
+								<strong>Table de PingPong Prix:</strong>
+								{% if ext.pingpongprix %}
+									{{ ext.pingpongprix }}
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+					</div>
+				</div>
+			{% endfor %}
+
+			{% for int in equipementInt %}
+				<div class="card mb-4">
+					<div class="card-body">
+						<h5 class="card-subtitle mb-3">Equipement Interieur</h5>
+
+						<p class="card-text">
+							<strong>Lave-vaisselle:</strong>
+							{% if int.Lavevaiss %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if int.Lavevaiss %}
+							<p class="card-text">
+								<strong>Lave-vaisselle Prix:</strong>
+								{% if int.lavevaissprix %}
+									{{ int.lavevaissprix }}€{% else %}gratuit
+								{% endif %}
+							</p>
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Lave-linge:</strong>
+							{% if int.lavelinge %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if int.lavelinge %}
+							<p class="card-text">
+								<strong>Lave-linge Prix:</strong>
+								{% if int.lavelingeprix %}
+									{{ int.lavelingeprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Télévision :</strong>
+							{% if int.tele %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if int.tele %}
+							<p class="card-text">
+								<strong>Télévison Prix:</strong>
+								{% if int.teleprix %}
+									{{ int.teleprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+
+
+						<p class="card-text">
+							<strong>Climatisation :</strong>
+							{% if int.climatisation %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if int.climatisation %}
+							<p class="card-text">
+								<strong>Climatisation Prix:</strong>
+								{% if int.climatisationprix %}
+									{{ int.climatisationprix }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+
+							{% else %}
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+
+			{% for serv in services %}
+				<div class="card mb-4">
+					<div class="card-body">
+						<h5 class="card-subtitle mb-3">Service</h5>
+
+						<p class="card-text">
+							<strong>Location de Linge:</strong>
+							{% if serv.loclinge %}Oui{% else %}Non
+							{% endif %}
+						</p>
+						{% if serv.loclinge %}
+							<p class="card-text">
+								<strong>Location de Linge Prix:</strong>
+								{% if serv.prixloclinge %}
+									{{ serv.prixloclinge }}€{% else %}gratuit
+								{% endif %}
+							</p>
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Ménage:</strong>
+							{% if serv.menage %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if serv.menage %}
+							<p class="card-text">
+								<strong>Ménage Prix:</strong>
+								{% if serv.prixmenage %}
+									{{ serv.prixmenage }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+						{% endif %}
+
+						<p class="card-text">
+							<strong>Internet:</strong>
+							{% if serv.internet %}Oui{% else %}Non
+							{% endif %}
+						</p>
+
+						{% if serv.internet %}
+							<p class="card-text">
+								<strong>Internet Prix:</strong>
+								{% if serv.prixinternet %}
+									{{ serv.prixinternet }}€
+								{% else %}
+									gratuit
+								{% endif %}
+							</p>
+
+							<p class="card-text">
+								<strong>Animaux:</strong>
+								{% if serv.Animaux %}Oui{% else %}Non
+								{% endif %}
+							</p>
+
+							{% if serv.Animaux %}
+								<p class="card-text">
+									<strong>Prix pour les animaux :</strong>
+									{% if serv.animauxprix %}
+										{{ serv.animauxprix }}€
+									{% else %}
+										gratuit
+									{% endif %}
+								</p>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+
+		</div>
+ <div class="text-center mt-4">
+                         <a href="{{ path('app_acceuil')}}" class="btn btn-primary"> Retoue a l'accueil</a>
+        </div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-Lz98nvR+JoGzsoeg+aLZzda9O7/gG0ejb5tq9qoH2PcFP68R2Y59Gttr"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-rmv2ywUJ6T1ucCjrYEGm2h2b2iOZTdP5F7oCyyFVhERnN/pVtHjiu6qjkC2f4qjj" crossorigin="anonymous"></script>
+	</body>
+</html>

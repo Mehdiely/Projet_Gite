@@ -1,0 +1,41 @@
+{# exemple/exemple.html.twig #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Gîtes</title>
+    <!-- Ajoutez les liens Bootstrap CSS ici -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></head>
+<body>
+    <div class="container mt-4">
+        <h1>Liste des Gîtes</h1>
+  <a href="{{ path('app_recherche') }}" class="btn btn-primary">Rechercher</a>
+  <br>
+  <br>
+        <div class="row">
+            {% for gite in gites %}
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ gite.Nomgite }}</h5>
+                            <p class="card-text"><strong>Ville:</strong> {{ gite.ville }}</p>
+                            <p class="card-text"><strong>Surface:</strong> {{ gite.surface }} m²</p>
+                            <p class="card-text"><strong>Couchage:</strong> {{ gite.couchage }}</p>
+                            <p class="card-text"><strong>Région:</strong> {{ gite.region }}</p>
+                          <p class="card-text"><strong>Departement:</strong> {{ gite.departement }}</p>
+   
+                         <p class="card-text"><strong>Numéro du propriétaire:</strong> 0{{ gite.idproprio.numero }}</p>
+                         <a href="{{ path('app_detail', {'id': gite.id}) }}" class="btn btn-primary">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Ajoutez les scripts Bootstrap JS ici -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-Lz98nvR+JoGzsoeg+aLZzda9O7/gG0ejb5tq9qoH2PcFP68R2Y59Gttr
